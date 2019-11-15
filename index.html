@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Landing Page - Start Bootstrap Theme</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link href="css/landing-page.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Masthead -->
+  <header class="masthead text-white text-center">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-9 mx-auto">
+          <h1 class="mb-5">Enter the OTP!</h1>
+        </div>
+        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+          <form>
+            <!DOCTYPE html>
+
+   <form method='POST'>
+   <h2>Please input your name and number to enter:</h2>
+ <input type="text" id="username" name="name">
+
+ <input type="text" id="usernumber" name="number">
+ <input type="submit" id ="submitButton" value="Enter Number">
+
+          </form>
+        </div>
+        <div class="col-12 col-md-3">
+          <div id="entries"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <script type="text/javascript">
+    var API_URL = "https://ssctg3l3b9.execute-api.us-east-1.amazonaws.com/prod/test-resource";
+
+    $('#submitButton').on('click', function(){
+      $.ajax({
+        type: "POST",
+        url: API_URL,
+        // $('#msg').val()
+        dataType: "text",
+        data: JSON.stringify({ "username": "name",
+                               "usernumber": "number",
+                             }),
+
+        // contentType: "application/json",
+        success: function(data){
+          $('#entries').html('<h1> success! </h1>');
+            
+          // (function(submitButton){
+          //   $('#entries').append('<p>' + "Hi" + '</p>');
+          // });
+        },
+        error: function() {
+          $('#entries').html('<h1> error! </h1>');
+        }
+      });
+
+      return false;
+    });
+  </script>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
