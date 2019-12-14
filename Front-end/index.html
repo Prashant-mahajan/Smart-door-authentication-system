@@ -35,15 +35,15 @@
         </div>
         <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
           <form>
-            <!DOCTYPE html>
-
-   <form method='POST'>
-   <h2>Please input your name and number to enter:</h2>
- <input type="text" id="username" name="name">
-
- <input type="text" id="usernumber" name="number">
- <input type="submit" id ="submitButton" value="Enter Number">
-
+            <div class="form-row">
+              <div class="col-12 col-md-9 mb-2 mb-md-0">
+                <!-- <input type="email" class="form-control form-control-lg" placeholder="Enter your email..."> -->
+                <textarea class="form-control form-control-lg" id="msg"></textarea>
+              </div>
+              <div class="col-12 col-md-3">
+                <button type="submit" id="submitButton" class="btn btn-block btn-lg btn-primary">Submit</button>
+              </div>
+            </div>
           </form>
         </div>
         <div class="col-12 col-md-3">
@@ -54,7 +54,7 @@
   </header>
 
   <script type="text/javascript">
-    var API_URL = "https://ssctg3l3b9.execute-api.us-east-1.amazonaws.com/prod/test-resource";
+    var API_URL = 'https://l4zcg6hr02.execute-api.us-east-1.amazonaws.com/prod3/validateotp';
 
     $('#submitButton').on('click', function(){
       $.ajax({
@@ -62,17 +62,14 @@
         url: API_URL,
         // $('#msg').val()
         dataType: "text",
-        data: JSON.stringify({ "username": "name",
-                               "usernumber": "number",
-                             }),
-
+        data: JSON.stringify({ "message": "hi"}),
         // contentType: "application/json",
         success: function(data){
           $('#entries').html('<h1> success! </h1>');
-            
-          // (function(submitButton){
-          //   $('#entries').append('<p>' + "Hi" + '</p>');
-          // });
+
+          data.Items.forEach(function(guestbookEntry){
+            $('#entries').append('<p>' + "Hi" + '</p>');
+          });
         },
         error: function() {
           $('#entries').html('<h1> error! </h1>');
